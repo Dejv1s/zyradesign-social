@@ -1,0 +1,11 @@
+{
+  "kicker": "PALCOVÝ TEST",
+  "headline": ["Otevřete svůj web", "<em>na mobilu.</em>"],
+  "sub": "Dosáhnete palcem na tlačítko Kontakt bez posouvání?",
+  "items": [
+    {"icon": "check", "text": "Ano: web pracuje pro vás"},
+    {"icon": "cross", "text": "Ne: zákazník to vzdá dřív, než zavolá"}
+  ],
+  "note": "Jak dopadl ten váš? Napište do komentářů.",
+  "seed": 7
+}
