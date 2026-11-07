@@ -1,11 +1,21 @@
 {
   "kicker": "TEST FORMULÁŘE",
-  "headline": ["Kolik poptávek", "<em>vám zmizelo?</em>"],
+  "headline": [
+    "Kolik poptávek",
+    "<em>vám zmizelo?</em>"
+  ],
   "sub": "Pošlete si formulář sami sobě a zjistěte, kam zpráva dorazí.",
   "items": [
-    {"icon": "check", "text": "Dorazí hned"},
-    {"icon": "cross", "text": "Zapadne do spamu"}
+    {
+      "icon": "check",
+      "text": "Dorazí hned"
+    },
+    {
+      "icon": "cross",
+      "text": "Zapadne do spamu"
+    }
   ],
   "note": "Uložte si to a pošlete tomu, kdo spravuje váš web.",
-  "seed": 11
+  "seed": 11,
+  "hero": "mail"
 }

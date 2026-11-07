@@ -88,6 +88,19 @@ ICONS = {
     "dot": '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3"><circle cx="24" cy="24" r="20"/><circle cx="24" cy="24" r="5" fill="#fff"/></svg>',
 }
 
+# Large line icons for the "hero" slot above the kicker (spec: "hero": "mail"). No ring, drawn inside a CSS circle.
+_H = 'viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"'
+HERO = {
+    "mail": f'<svg {_H}><rect x="6" y="11" width="36" height="26" rx="4"/><path d="M7 14l17 13 17-13"/></svg>',
+    "search": f'<svg {_H}><circle cx="21" cy="21" r="12"/><path d="M30 30l10 10"/></svg>',
+    "bolt": f'<svg {_H}><path d="M27 6L12 27h11l-2 15 15-22H25z"/></svg>',
+    "phone": f'<svg {_H}><rect x="14" y="5" width="20" height="38" rx="4"/><path d="M21 38h6"/></svg>',
+    "shield": f'<svg {_H}><path d="M24 5l14 5v11c0 9-6 16-14 20C16 37 10 30 10 21V10z"/><path d="M18 24l5 5 8-9"/></svg>',
+    "bulb": f'<svg {_H}><path d="M17 33c0-3-5-5-5-12a12 12 0 0124 0c0 7-5 9-5 12z"/><path d="M18 39h12M20 43h8"/></svg>',
+    "chat": f'<svg {_H}><path d="M7 11h34v22H22l-9 8v-8H7z"/><path d="M15 20h18M15 26h11"/></svg>',
+    "gear": f'<svg {_H}><circle cx="24" cy="24" r="6"/><path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.5 10.5l4.2 4.2M33.3 33.3l4.2 4.2M10.5 37.5l4.2-4.2M33.3 14.7l4.2-4.2"/></svg>',
+}
+
 
 def html(spec, fmt):
     f = FORMATS[fmt]
@@ -97,6 +110,7 @@ def html(spec, fmt):
         for it in spec.get("items", [])
     )
     head = "<br>".join(spec["headline"])
+    hero = f'<div class="hero">{HERO[spec["hero"]]}</div>' if spec.get("hero") else ""
     kicker = f'<div class="kicker">{spec["kicker"]}</div>' if spec.get("kicker") else ""
     sub = f'<div class="sub">{spec["sub"]}</div>' if spec.get("sub") else ""
     note = f'<div class="note">{spec["note"]}</div>' if spec.get("note") else ""
@@ -110,7 +124,8 @@ body{{background:{BG};color:#fff;font-family:'Outfit',sans-serif;position:relati
 .brand{{font-size:{f['brand']}px;line-height:1;letter-spacing:.01em}}
 .brand b{{font-weight:800}} .brand i{{font-style:normal;font-weight:300}}
 .tag{{font-size:{f['tag']}px;font-weight:500;margin-top:{f['tag'] * .35:.0f}px;letter-spacing:.02em}}
-.main{{position:absolute;left:{f['pad']}px;right:{f['pad']}px;top:{f"{round(250 * f['w'] / 1080)}px" if ig else '150px'};text-align:{'center' if ig else 'left'}}}
+.main{{position:absolute;left:{f['pad']}px;right:{f['pad']}px;top:{f"{round((215 if spec.get('hero') else 250) * f['w'] / 1080)}px" if ig else '150px'};text-align:{'center' if ig else 'left'}}}
+.hero{{width:{round(f['head'] * 1.35)}px;height:{round(f['head'] * 1.35)}px;margin:0 auto {round(f['head'] * .3)}px;padding:{round(f['head'] * .2)}px;border-radius:50%;border:2px solid {ACCENT};box-shadow:0 0 36px rgba(212,25,74,.45), inset 0 0 22px rgba(212,25,74,.18)}} .hero svg{{width:100%;height:100%;display:block}}
 .kicker{{font-size:{f['tag'] * (1.0 if ig else 1.0):.0f}px;font-weight:700;letter-spacing:.22em;color:{ACCENT};margin-bottom:{f['head'] * .35:.0f}px}}
 h1{{font-size:{f['head']}px;line-height:1.06;font-weight:800;text-transform:uppercase;letter-spacing:.005em}}
 h1 em{{font-style:normal;color:{ACCENT}}}
@@ -126,7 +141,7 @@ h1 em{{font-style:normal;color:{ACCENT}}}
     return f"""<!DOCTYPE html><html lang="cs"><head><meta charset="utf-8"><style>{css}</style></head><body>
 <div class="mesh">{mesh_svg(f['w'], f['mesh_h'], seed=spec.get('seed', 7))}</div>
 <div class="top"><div class="brand"><b>ZYRA</b><i>DESIGN</i></div><div class="tag">Tvorba webů na míru</div></div>
-<div class="main">{kicker}<h1>{head}</h1>{sub}<div class="items">{items}</div></div>
+<div class="main">{hero}{kicker}<h1>{head}</h1>{sub}<div class="items">{items}</div></div>
 {note}
 <div class="badge"><img src="file://{LOGO}"></div>
 </body></html>"""
