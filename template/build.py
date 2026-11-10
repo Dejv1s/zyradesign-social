@@ -102,6 +102,54 @@ HERO = {
 }
 
 
+# Larger line-art scenes with an original character ("illustration" in spec, replaces "hero").
+_W = 'fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"'
+_A = '#d4194a'
+ILLUS = {
+    # Little character inspecting a crossed-out <meta keywords> tag with a magnifier.
+    "detective": f"""<svg viewBox="0 0 460 270" xmlns="http://www.w3.org/2000/svg">
+  <defs><clipPath id="headclip"><circle cx="140" cy="70" r="38"/></clipPath>
+        <clipPath id="lensclip"><circle cx="316" cy="140" r="30"/></clipPath></defs>
+  <ellipse cx="140" cy="258" rx="78" ry="9" fill="#000" opacity=".6"/>
+  <!-- legs + shoes -->
+  <path d="M126 200v48M154 200v48" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M114 250h18M148 250h22" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+  <!-- torso (hoodie with zip) -->
+  <rect x="102" y="114" width="76" height="90" rx="26" fill="#1e1e1e" stroke="#fff" stroke-width="5"/>
+  <path d="M140 122v44" stroke="{_A}" stroke-width="4" stroke-linecap="round"/>
+  <!-- left arm on hip, fist -->
+  <path d="M106 136q-24 20 -4 42" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  <!-- tag under inspection -->
+  <g transform="rotate(-6 370 150)">
+    <rect x="296" y="124" width="150" height="54" rx="14" fill="#1b1b1b" stroke="#fff" stroke-width="4"/>
+    <text x="371" y="159" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="25" fill="#fff">&lt;keywords&gt;</text>
+    <path d="M308 151h126" stroke="{_A}" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <circle cx="444" cy="122" r="19" fill="{_A}"/>
+  <path d="M436 114l16 16M452 114l-16 16" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <!-- magnifier: glass, ring, crimson handle -->
+  <g clip-path="url(#lensclip)"><circle cx="316" cy="140" r="30" fill="#fff" opacity=".04"/></g>
+  <path d="M294 162L260 184" stroke="#3a1420" stroke-width="16" stroke-linecap="round"/>
+  <path d="M294 162L260 184" stroke="{_A}" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="316" cy="140" r="30" fill="none" stroke="#fff" stroke-width="6"/>
+  <path d="M300 128q8 -9 20 -6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+  <!-- right arm reaching to handle, round hand gripping -->
+  <path d="M176 136L212 170L250 182" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="258" cy="184" r="10" fill="#fff"/>
+  <!-- head: face, hair clipped inside -->
+  <circle cx="140" cy="70" r="38" fill="#1e1e1e"/>
+  <g clip-path="url(#headclip)"><path d="M98 30h90v26q-26 -12 -56 -2q-18 6 -34 4z" fill="#fff"/></g>
+  <circle cx="140" cy="70" r="38" fill="none" stroke="#fff" stroke-width="5"/>
+  <path d="M150 63l11 -2M166 61l10 2" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="156" cy="73" r="4.5" fill="#fff"/><circle cx="171" cy="73" r="4.5" fill="#fff"/>
+  <path d="M152 92q9 -4 18 1" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <!-- thought marks -->
+  <text x="190" y="40" font-family="Outfit" font-weight="800" font-size="44" fill="{_A}">?</text>
+  <text x="216" y="24" font-family="Outfit" font-weight="800" font-size="28" fill="{_A}" opacity=".6">?</text>
+</svg>""",
+}
+
+
 def html(spec, fmt):
     f = FORMATS[fmt]
     ig = True  # portrait layout only
@@ -111,6 +159,8 @@ def html(spec, fmt):
     )
     head = "<br>".join(spec["headline"])
     hero = f'<div class="hero">{HERO[spec["hero"]]}</div>' if spec.get("hero") else ""
+    if spec.get("illustration"):
+        hero = f'<div class="illus">{ILLUS[spec["illustration"]]}</div>'
     kicker = f'<div class="kicker">{spec["kicker"]}</div>' if spec.get("kicker") else ""
     sub = f'<div class="sub">{spec["sub"]}</div>' if spec.get("sub") else ""
     note = f'<div class="note">{spec["note"]}</div>' if spec.get("note") else ""
@@ -124,8 +174,9 @@ body{{background:{BG};color:#fff;font-family:'Outfit',sans-serif;position:relati
 .brand{{font-size:{f['brand']}px;line-height:1;letter-spacing:.01em}}
 .brand b{{font-weight:800}} .brand i{{font-style:normal;font-weight:300}}
 .tag{{font-size:{f['tag']}px;font-weight:500;margin-top:{f['tag'] * .35:.0f}px;letter-spacing:.02em}}
-.main{{position:absolute;left:{f['pad']}px;right:{f['pad']}px;top:{f"{round((215 if spec.get('hero') else 250) * f['w'] / 1080)}px" if ig else '150px'};text-align:{'center' if ig else 'left'}}}
+.main{{position:absolute;left:{f['pad']}px;right:{f['pad']}px;top:{f"{round((195 if spec.get('illustration') else 215 if spec.get('hero') else 250) * f['w'] / 1080)}px" if ig else '150px'};text-align:{'center' if ig else 'left'}}}
 .hero{{width:{round(f['head'] * 1.35)}px;height:{round(f['head'] * 1.35)}px;margin:0 auto {round(f['head'] * .3)}px;padding:{round(f['head'] * .2)}px;border-radius:50%;border:2px solid {ACCENT};box-shadow:0 0 36px rgba(212,25,74,.45), inset 0 0 22px rgba(212,25,74,.18)}} .hero svg{{width:100%;height:100%;display:block}}
+.illus{{width:{round(f['w']*.5)}px;margin:0 auto {round(f['head']*.25)}px}} .illus svg{{width:100%;height:auto;display:block;overflow:visible}}
 .kicker{{font-size:{f['tag'] * (1.0 if ig else 1.0):.0f}px;font-weight:700;letter-spacing:.22em;color:{ACCENT};margin-bottom:{f['head'] * .35:.0f}px}}
 h1{{font-size:{f['head']}px;line-height:1.06;font-weight:800;text-transform:uppercase;letter-spacing:.005em}}
 h1 em{{font-style:normal;color:{ACCENT}}}

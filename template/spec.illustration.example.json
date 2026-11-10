@@ -1,0 +1,21 @@
+{
+ "kicker": "MÝTUS VS. PRAVDA",
+ "headline": [
+  "Meta keywords",
+  "<em>Google nečte</em>"
+ ],
+ "sub": "Google to potvrdil už v roce 2009.",
+ "items": [
+  {
+   "icon": "cross",
+   "text": "Meta keywords: nula vlivu"
+  },
+  {
+   "icon": "check",
+   "text": "Title a obsah: tady to hraje"
+  }
+ ],
+ "note": "Uložte si to pro příští debatu o SEO.",
+ "seed": 23,
+ "illustration": "detective"
+}
