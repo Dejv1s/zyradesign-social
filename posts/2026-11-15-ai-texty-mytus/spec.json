@@ -1,0 +1,12 @@
+{
+ "kicker": "MÝTUS VS. PRAVDA",
+ "headline": ["Google trestá", "<em>texty od AI?</em>"],
+ "sub": "Google hodnotí kvalitu obsahu, ne nástroj, kterým vznikl.",
+ "items": [
+  {"icon": "cross", "text": "Hromadný text bez hodnoty = spam"},
+  {"icon": "check", "text": "Užitečný a ověřený obsah = v pořádku"}
+ ],
+ "note": "Uložte si to a pošlete kolegovi.",
+ "seed": 31,
+ "illustration": "stamp"
+}

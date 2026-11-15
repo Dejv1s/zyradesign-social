@@ -147,6 +147,48 @@ ILLUS = {
   <text x="190" y="40" font-family="Outfit" font-weight="800" font-size="44" fill="{_A}">?</text>
   <text x="216" y="24" font-family="Outfit" font-weight="800" font-size="28" fill="{_A}" opacity=".6">?</text>
 </svg>""",
+    # Character holding a crimson rubber stamp above a sheet marked "AI TEXT" already stamped "KVALITA".
+    "stamp": f"""<svg viewBox="0 0 460 270" xmlns="http://www.w3.org/2000/svg">
+  <defs><clipPath id="headclip2"><circle cx="140" cy="70" r="38"/></clipPath></defs>
+  <ellipse cx="140" cy="258" rx="78" ry="9" fill="#000" opacity=".6"/>
+  <ellipse cx="332" cy="250" rx="80" ry="7" fill="#000" opacity=".5"/>
+  <!-- legs + shoes -->
+  <path d="M126 200v48M154 200v48" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M114 250h18M148 250h22" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+  <!-- torso (hoodie with zip) -->
+  <rect x="102" y="114" width="76" height="90" rx="26" fill="#1e1e1e" stroke="#fff" stroke-width="5"/>
+  <path d="M140 122v44" stroke="{_A}" stroke-width="4" stroke-linecap="round"/>
+  <!-- left arm on hip -->
+  <path d="M106 136q-24 20 -4 42" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  <g transform="translate(-40 0)">
+  <!-- sheet of paper -->
+  <g transform="rotate(-4 372 186)">
+    <rect x="300" y="128" width="144" height="114" rx="8" fill="#1b1b1b" stroke="#fff" stroke-width="4"/>
+    <text x="316" y="158" font-family="Outfit" font-weight="800" font-size="19" fill="#fff" letter-spacing="1">AI TEXT</text>
+    <path d="M316 174h110M316 189h86" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+    <g transform="rotate(-8 374 216)">
+      <rect x="318" y="200" width="112" height="32" rx="6" fill="none" stroke="{_A}" stroke-width="3.5"/>
+      <text x="374" y="223" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="19" fill="{_A}" letter-spacing="1.5">KVALITA</text>
+    </g>
+  </g>
+  <!-- rubber stamp: crimson knob, neck, base; motion marks -->
+  <path d="M308 98l-12 -4M308 110l-14 4M412 98l12 -4M412 110l14 4" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+  <rect x="354" y="62" width="12" height="26" fill="{_A}"/>
+  <rect x="326" y="86" width="68" height="20" rx="5" fill="{_A}"/>
+  <rect x="330" y="104" width="60" height="6" rx="2" fill="#3a1420"/>
+  <circle cx="360" cy="58" r="15" fill="{_A}"/>
+  </g>
+  <!-- right arm with elbow, round hand gripping the knob -->
+  <path d="M176 138L226 96L310 61" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="318" cy="58" r="10" fill="#fff"/>
+  <!-- head: face, hair clipped inside -->
+  <circle cx="140" cy="70" r="38" fill="#1e1e1e"/>
+  <g clip-path="url(#headclip2)"><path d="M98 30h90v26q-26 -12 -56 -2q-18 6 -34 4z" fill="#fff"/></g>
+  <circle cx="140" cy="70" r="38" fill="none" stroke="#fff" stroke-width="5"/>
+  <path d="M150 62l11 -3M166 59l10 3" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="156" cy="73" r="4.5" fill="#fff"/><circle cx="171" cy="73" r="4.5" fill="#fff"/>
+  <path d="M152 88q9 7 18 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>""",
 }
 
 
